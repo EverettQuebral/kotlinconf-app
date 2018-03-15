@@ -7,6 +7,7 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.jetbrains.kotlinconf.ui.EntryFieldsFragment
 import org.jetbrains.kotlinconf.R
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
@@ -35,7 +36,7 @@ class MainActivity :
         setContentView(createView(AnkoContext.create(this)))
 
         if (savedInstanceState == null) {
-            showSessionList()
+            showEntryFields()
         }
         else {
             savedInstanceState.getString(SEARCH_QUERY_KEY)?.let { _searchQuery = it }
@@ -118,6 +119,23 @@ class MainActivity :
                 )
                 .addToBackStack("Session")
                 .replace(R.id.fragment_container, fragment, SessionDetailsFragment.TAG)
+                .commit()
+    }
+
+    private fun showEntryFields(){
+        if (supportFragmentManager.findFragmentByTag(EntryFieldsFragment.TAG) != null)
+            return
+
+        supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(
+                        R.anim.enter_from_right,
+                        R.anim.exit_to_left,
+                        R.anim.enter_from_left,
+                        R.anim.exit_to_right
+                )
+                .addToBackStack("EntryFields")
+                .replace(R.id.fragment_container, EntryFieldsFragment(), EntryFieldsFragment.TAG)
                 .commit()
     }
 

@@ -13,6 +13,10 @@ import android.support.v7.widget.Toolbar
 import android.text.util.Linkify
 import android.view.*
 import android.widget.ImageView
+import com.github.fluidsonic.fluid.json.JSONReader
+import com.github.fluidsonic.fluid.json.readFromListByElement
+import com.github.fluidsonic.fluid.json.readFromMapByElementValue
+import com.github.fluidsonic.fluid.json.readMap
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
@@ -20,6 +24,8 @@ import org.jetbrains.anko.design.coordinatorLayout
 import org.jetbrains.anko.design.themedAppBarLayout
 import org.jetbrains.anko.support.v4.nestedScrollView
 import org.jetbrains.kotlinconf.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 /**
  * Created by eq on 3/14/18.
@@ -53,6 +59,25 @@ class EntryFieldsFragment : Fragment(), AnkoComponent<Context> {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+//        val input = context.resources.openRawResource(R.raw.fields)
+//        var reader = BufferedReader(InputStreamReader(input))
+//        JSONReader.build(reader).use { reader ->
+//            reader.readFromMapByElementValue { key ->
+//                println(key)
+//            }
+//        }
+        var input = context.resources.openRawResource(R.raw.fields)
+        val reader = BufferedReader(InputStreamReader(input))
+        JSONReader.build(reader).use { reader ->
+            reader.readFromMapByElementValue { key ->
+                println("KEY HERE " + key)
+
+                readFromListByElement {
+                    println("PROPERTIES HERE " + readMap())
+                }
+            }
+        }
+
         return createView(AnkoContext.create(context))
     }
 

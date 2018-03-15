@@ -7,10 +7,8 @@
       "style" : "edit-text"
     }
   ],
-  "styles":{
-    "edit_text" : {
-      "size" : "16",
-      "color": "black"
-    }
-  }
+  "styles":[
+    {"something": "value"},
+    {"testing": "new value"}
+  ]
 }

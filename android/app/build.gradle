@@ -64,6 +64,8 @@ dependencies {
     compile 'com.brandongogetap:stickyheaders:0.4.9'
     compile 'ru.gildor.coroutines:kotlin-coroutines-retrofit:0.8.2'
 
+    implementation("com.github.fluidsonic:fluid-json:0.9.1")
+
     compile project(":common-jvm")
 }
 

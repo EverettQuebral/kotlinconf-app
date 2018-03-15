@@ -1,0 +1,16 @@
+{
+  "fields":[
+    {
+      "name" : "FirstName",
+      "type" : "EditText",
+      "value" : "Testing",
+      "style" : "edit-text"
+    }
+  ],
+  "styles":{
+    "edit_text" : {
+      "size" : "16",
+      "color": "black"
+    }
+  }
+}

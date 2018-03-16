@@ -1,0 +1,14 @@
+{
+  "styles" : {
+    "body" : {
+      "color" : "BLACK",
+      "font-size" : "16f",
+      "border" : "1px solid #ddd"
+    },
+    "button" : {
+      "color" : "RED",
+      "font-size" : "18f",
+      "border" : "1px solid #aaa"
+    }
+  }
+}

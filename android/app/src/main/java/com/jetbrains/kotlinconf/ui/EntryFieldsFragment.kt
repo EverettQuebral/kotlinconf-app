@@ -13,10 +13,7 @@ import android.support.v7.widget.Toolbar
 import android.text.util.Linkify
 import android.view.*
 import android.widget.ImageView
-import com.github.fluidsonic.fluid.json.JSONReader
-import com.github.fluidsonic.fluid.json.readFromListByElement
-import com.github.fluidsonic.fluid.json.readFromMapByElementValue
-import com.github.fluidsonic.fluid.json.readMap
+import com.github.fluidsonic.fluid.json.*
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
@@ -59,21 +56,28 @@ class EntryFieldsFragment : Fragment(), AnkoComponent<Context> {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-//        val input = context.resources.openRawResource(R.raw.fields)
-//        var reader = BufferedReader(InputStreamReader(input))
-//        JSONReader.build(reader).use { reader ->
-//            reader.readFromMapByElementValue { key ->
-//                println(key)
-//            }
-//        }
-        var input = context.resources.openRawResource(R.raw.fields)
-        val reader = BufferedReader(InputStreamReader(input))
+
+        var fieldInput = context.resources.openRawResource(R.raw.fields)
+        val reader = BufferedReader(InputStreamReader(fieldInput))
         JSONReader.build(reader).use { reader ->
             reader.readFromMapByElementValue { key ->
                 println("KEY HERE " + key)
 
                 readFromListByElement {
                     println("PROPERTIES HERE " + readMap())
+                }
+            }
+        }
+
+        var styleInput = context.resources.openRawResource(R.raw.styles)
+        val styleReader = BufferedReader(InputStreamReader(styleInput))
+        JSONReader.build(styleReader).use { styleReader ->
+            styleReader.readFromMapByElementValue { key ->
+                println("STYLE HERE " + key)
+
+                readFromMapByElementValue { key ->
+                    println("KEY HERE " + key)
+                    println(readMap())
                 }
             }
         }
